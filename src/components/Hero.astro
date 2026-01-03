@@ -1,0 +1,76 @@
+---
+import UnicornMascot from './icons/UnicornMascot.astro';
+import PhoneIcon from './icons/PhoneIcon.astro';
+---
+
+<section class="relative min-h-screen flex items-center pt-20">
+  <!-- Subtle pattern -->
+  <div class="absolute inset-0 opacity-[0.03]">
+    <div class="h-full w-full" style="background-image: radial-gradient(circle at 1px 1px, #1a365d 1px, transparent 0); background-size: 32px 32px;"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <!-- Trust badge - Value-First updated -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-navy/5 border border-navy/10 rounded-full mb-6">
+          <div class="w-2 h-2 bg-gold rounded-full"></div>
+          <span class="text-navy text-sm">Exit Preparation Specialists for Accounting Practices</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 font-serif">
+          <span class="text-navy">Protect What</span>
+          <br />
+          <span class="text-navy">You've </span>
+          <span class="text-gold">Built</span>
+        </h1>
+
+        <!-- Value-First updated subhead -->
+        <p class="text-lg md:text-xl text-charcoal/80 mb-8 leading-relaxed">
+          Prepare your practice for a successful exit—one that rewards you financially,
+          protects your employees, and preserves the legacy you've created.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-4">
+          <a href="#services" class="px-8 py-4 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all text-center shadow-md">
+            Explore Your Options
+          </a>
+          <a href="tel:+1-555-738-6770" class="px-8 py-4 border-2 border-navy hover:bg-navy hover:text-white text-navy font-medium rounded transition-all text-center flex items-center justify-center gap-2">
+            <PhoneIcon />
+            Call Us Directly
+          </a>
+        </div>
+
+        <!-- Educational CTA - NEW Value-First addition -->
+        <p class="text-charcoal/60 text-sm mb-8">
+          Not ready to talk? <a href="#journey" class="text-navy hover:text-gold underline">See where you are on your exit journey →</a>
+        </p>
+
+        <!-- Stats - Industry research with citations -->
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-navy/10">
+          <div>
+            <div class="text-2xl md:text-3xl font-bold text-navy font-serif">75%</div>
+            <div class="text-charcoal/70 text-sm mt-1">of CPAs retiring in 15 years*</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-bold text-navy font-serif">40%+</div>
+            <div class="text-charcoal/70 text-sm mt-1">premium for tech-enabled practices*</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-bold text-navy font-serif">20+</div>
+            <div class="text-charcoal/70 text-sm mt-1">years combined experience</div>
+          </div>
+        </div>
+        <p class="text-charcoal/50 text-xs mt-4">*Source: AICPA, Accounting Today M&A Reports</p>
+      </div>
+
+      <!-- Unicorn illustration -->
+      <div class="hidden lg:flex justify-center items-center">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gold/10 rounded-full blur-3xl scale-110"></div>
+          <UnicornMascot class="w-80 h-80 relative z-10" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

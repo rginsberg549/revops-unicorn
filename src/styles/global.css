@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* RevOps Unicorn Brand Theme */
+@theme {
+  --color-navy: #1a365d;
+  --color-gold: #c9a227;
+  --color-burgundy: #8b2942;
+  --color-cream: #faf8f5;
+  --color-charcoal: #2d3748;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Source Sans Pro', 'Segoe UI', sans-serif;
+}

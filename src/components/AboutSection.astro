@@ -1,0 +1,75 @@
+---
+import CheckIcon from './icons/CheckIcon.astro';
+
+const differentiators = [
+  { title: "Industry Specialists", desc: "Exclusive focus on accounting and professional services" },
+  { title: "Implementation Partners", desc: "We do the work with you, not just advise" },
+  { title: "Honest Assessment", desc: "We'll tell you the truth, even when it's hard to hear" }
+];
+
+const whyDifferent = [
+  {
+    title: "We don't just advise—we partner",
+    desc: "Other advisors give you a plan and wish you luck. We roll up our sleeves and help you execute every element of your transformation."
+  },
+  {
+    title: "We honor all your stakeholders",
+    desc: "Legacy matters. We help you structure transitions that protect the client relationships you've nurtured and the team you've built."
+  },
+  {
+    title: "We succeed when your practice thrives",
+    desc: "Our Transition Partnership means we only succeed when you do. Your successful exit is our best marketing."
+  }
+];
+---
+
+<section id="about" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="text-gold font-medium text-sm tracking-wider uppercase">About RevOps Unicorn</span>
+        <h2 class="text-3xl md:text-4xl text-navy mt-4 mb-6 font-serif">
+          We've Walked This Path <span class="text-gold">Ourselves</span>
+        </h2>
+        <p class="text-charcoal/80 text-lg leading-relaxed mb-6">
+          RevOps Unicorn was founded by professionals who've spent decades in accounting
+          and professional services—and who understand that exiting a practice you've
+          built is about far more than money.
+        </p>
+        <!-- Value-First updated paragraph -->
+        <p class="text-charcoal/80 text-lg leading-relaxed mb-8">
+          We combine deep industry expertise with modern revenue operations methodology
+          to help firm owners maximize their exit value while protecting what matters—their
+          clients, their team, and their legacy.
+        </p>
+
+        <div class="space-y-4">
+          {differentiators.map((item) => (
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <CheckIcon class="text-gold" />
+              </div>
+              <div>
+                <div class="text-navy font-semibold">{item.title}</div>
+                <div class="text-charcoal/70 text-sm">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="bg-cream rounded-lg p-8 border border-navy/10">
+        <h3 class="text-2xl font-semibold text-navy mb-6 font-serif">Why We're Different</h3>
+        <div class="space-y-6">
+          {whyDifferent.map((item, index) => (
+            <div>
+              <div class="text-gold font-semibold mb-2">{item.title}</div>
+              <p class="text-charcoal/70 text-sm">{item.desc}</p>
+              {index < whyDifferent.length - 1 && <div class="h-px bg-navy/10 mt-6"></div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

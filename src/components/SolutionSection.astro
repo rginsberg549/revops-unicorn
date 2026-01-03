@@ -1,0 +1,76 @@
+---
+// SolutionSection - MAJOR Value-First reframe
+// Changed "What Buyers Want" to "What Creates Exit Value"
+// Reframed all value drivers from buyer-centric to stakeholder-centric
+
+const valueDrivers = [
+  {
+    icon: "🔄",
+    title: "Recurring Revenue",
+    description: "Ongoing advisory relationships that serve clients better AND create predictable value"
+  },
+  {
+    icon: "👥",
+    title: "Team Empowerment",
+    description: "Systems and training so your team can serve clients excellently—giving you freedom now and transferability later"
+  },
+  {
+    icon: "☁️",
+    title: "Modern Technology",
+    description: "Cloud tools that make work easier for your team, service better for clients, and integration simpler for acquirers"
+  },
+  {
+    icon: "📊",
+    title: "Balanced Client Mix",
+    description: "A healthy portfolio that reduces stress now and risk at exit"
+  },
+  {
+    icon: "📝",
+    title: "Clear Processes",
+    description: "Documented workflows that ensure consistency, simplify training, and demonstrate transferability"
+  },
+  {
+    icon: "👨‍💼",
+    title: "Team Development",
+    description: "Invest in people who grow with you and can carry the practice forward"
+  }
+];
+---
+
+<section id="solution" class="py-20 lg:py-28 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <!-- Value-First updated header -->
+        <span class="text-gold font-medium text-sm tracking-wider uppercase">What Creates Exit Value</span>
+        <h2 class="text-3xl md:text-4xl text-navy mt-4 mb-6 font-serif">
+          We Build Practices <span class="text-gold">Worth Acquiring</span>
+        </h2>
+        <!-- Value-First updated intro -->
+        <p class="text-charcoal/80 text-lg leading-relaxed mb-8">
+          Acquirers pay premium for practices that serve clients well, empower teams,
+          and don't depend entirely on the owner. These qualities make your practice
+          valuable—and make it a better place to work until you're ready to exit.
+        </p>
+        <div class="bg-white border border-navy/10 rounded-lg p-6">
+          <div class="text-sm text-charcoal/70 mb-2">Industry Research</div>
+          <div class="flex items-end gap-3">
+            <span class="text-5xl font-bold text-gold font-serif">40%+</span>
+            <span class="text-charcoal/70 pb-2">premium for tech-enabled practices</span>
+          </div>
+          <p class="text-charcoal/50 text-xs mt-2">Source: Accounting Today M&A Report</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        {valueDrivers.map((driver) => (
+          <div class="bg-white border border-navy/10 rounded-lg p-5 hover:shadow-md transition-all">
+            <div class="text-2xl mb-3">{driver.icon}</div>
+            <h3 class="text-navy font-semibold mb-2">{driver.title}</h3>
+            <p class="text-charcoal/70 text-sm leading-relaxed">{driver.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

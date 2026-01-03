@@ -1,0 +1,78 @@
+---
+// ProcessSection - Value-First updated Phase 4
+
+const phases = [
+  {
+    number: "01",
+    title: "Discovery & Assessment",
+    duration: "Weeks 1-2",
+    description: "Comprehensive evaluation of your practice's current state, technology infrastructure, and exit readiness.",
+    outputs: ["Exit readiness scorecard", "Technology audit", "Valuation analysis", "Risk assessment"]
+  },
+  {
+    number: "02",
+    title: "Foundation Building",
+    duration: "Weeks 3-8",
+    description: "Strategic planning and infrastructure setup to support systematic value creation.",
+    outputs: ["Platform selection", "Data migration plan", "Workflow design", "Change management"]
+  },
+  {
+    number: "03",
+    title: "Implementation",
+    duration: "Weeks 9-16",
+    description: "Hands-on deployment of technology, processes, and systems that drive valuation.",
+    outputs: ["Technology deployment", "Staff training", "Process automation", "Quality protocols"]
+  },
+  {
+    number: "04",
+    title: "Optimization & Exit Prep",
+    duration: "Weeks 17+",
+    description: "Refinement, performance monitoring, and documentation that ensures lasting improvement.",
+    outputs: ["Performance tracking", "Process refinement", "Exit documentation", "Buyer readiness"]
+  }
+];
+---
+
+<section id="process" class="py-20 lg:py-28 bg-cream">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <span class="text-gold font-medium text-sm tracking-wider uppercase">Our Process</span>
+      <h2 class="text-3xl md:text-4xl text-navy mt-4 mb-6 font-serif">
+        Methodical Transformation, Measurable Results
+      </h2>
+      <p class="text-charcoal/80 text-lg leading-relaxed">
+        Our proven methodology guides you through systematic value creation,
+        with clear milestones and transparent progress at every stage.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="hidden lg:block absolute top-20 left-0 right-0 h-0.5 bg-navy/20"></div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {phases.map((phase) => (
+          <div class="relative">
+            <div class="w-16 h-16 rounded-full bg-navy flex items-center justify-center mb-6 relative z-10 shadow-lg">
+              <span class="text-gold font-bold text-lg font-serif">{phase.number}</span>
+            </div>
+            <div class="bg-white border border-navy/10 rounded-lg p-6 h-full hover:shadow-md transition-all">
+              <div class="text-gold text-sm font-medium mb-2">{phase.duration}</div>
+              <h3 class="text-xl font-semibold text-navy mb-3 font-serif">{phase.title}</h3>
+              <p class="text-charcoal/70 text-sm mb-4 leading-relaxed">{phase.description}</p>
+              <div class="pt-4 border-t border-navy/10">
+                <div class="text-xs text-charcoal/60 uppercase tracking-wider mb-2 font-medium">Key Outputs</div>
+                <ul class="space-y-1">
+                  {phase.outputs.map((output) => (
+                    <li class="text-charcoal/70 text-sm flex items-center gap-2">
+                      <div class="w-1.5 h-1.5 bg-gold rounded-full"></div>
+                      {output}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

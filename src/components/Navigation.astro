@@ -1,0 +1,85 @@
+---
+import UnicornHead from './icons/UnicornHead.astro';
+import PhoneIcon from './icons/PhoneIcon.astro';
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="/" class="flex items-center gap-3">
+        <UnicornHead class="w-12 h-12" />
+        <div>
+          <span class="text-xl font-semibold text-navy font-serif">RevOps</span>
+          <span class="text-xl font-semibold text-gold font-serif"> Unicorn</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#problem" class="text-charcoal hover:text-navy transition-colors text-sm">The Gap</a>
+        <a href="#solution" class="text-charcoal hover:text-navy transition-colors text-sm">Our Approach</a>
+        <a href="#services" class="text-charcoal hover:text-navy transition-colors text-sm">Services</a>
+        <a href="#process" class="text-charcoal hover:text-navy transition-colors text-sm">Process</a>
+        <a href="#about" class="text-charcoal hover:text-navy transition-colors text-sm">About</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:+1-555-738-6770" class="text-navy text-sm flex items-center gap-2">
+          <PhoneIcon />
+          (555) 738-6770
+        </a>
+        <a href="#contact" class="px-5 py-2.5 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all text-sm shadow-sm">
+          Schedule Consultation
+        </a>
+      </div>
+
+      <button id="mobile-menu-button" class="md:hidden p-2" aria-label="Toggle menu">
+        <div class="w-6 h-0.5 bg-navy mb-1.5"></div>
+        <div class="w-6 h-0.5 bg-navy mb-1.5"></div>
+        <div class="w-6 h-0.5 bg-navy"></div>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-navy/10 px-6 py-4">
+    <div class="flex flex-col gap-4">
+      <a href="#problem" class="text-charcoal py-2">The Gap</a>
+      <a href="#solution" class="text-charcoal py-2">Our Approach</a>
+      <a href="#services" class="text-charcoal py-2">Services</a>
+      <a href="#process" class="text-charcoal py-2">Process</a>
+      <a href="#about" class="text-charcoal py-2">About</a>
+      <a href="#contact" class="px-5 py-3 bg-gold text-white font-medium rounded text-center mt-2">
+        Schedule Consultation
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  // Scroll effect for nav background
+  const nav = document.getElementById('main-nav');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav?.classList.remove('bg-transparent');
+      nav?.classList.add('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm');
+    } else {
+      nav?.classList.add('bg-transparent');
+      nav?.classList.remove('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm');
+    }
+  });
+</script>

@@ -1,0 +1,56 @@
+---
+import UnicornHead from './icons/UnicornHead.astro';
+
+// Service names - Value-First updated
+const services = [
+  { name: "Practice Clarity Assessment", href: "#services" },
+  { name: "Transformation Partnership", href: "#services" },
+  { name: "Transition Partnership", href: "#services" }
+];
+---
+
+<footer class="py-16 bg-navy">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+      <div class="md:col-span-2">
+        <a href="/" class="flex items-center gap-3 mb-4">
+          <UnicornHead class="w-12 h-12" />
+          <div>
+            <span class="text-xl font-semibold text-white font-serif">RevOps</span>
+            <span class="text-xl font-semibold text-gold font-serif"> Unicorn</span>
+          </div>
+        </a>
+        <!-- Value-First updated tagline -->
+        <p class="text-white/70 max-w-md leading-relaxed">
+          Exit preparation for accounting firm owners. We help you build a practice
+          worth acquiring—and worth running until you're ready.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Services</h4>
+        <ul class="space-y-2">
+          {services.map((service) => (
+            <li>
+              <a href={service.href} class="text-white/70 hover:text-gold transition-colors">{service.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Contact</h4>
+        <ul class="space-y-2">
+          <li class="text-white/70">(555) 738-6770</li>
+          <li><a href="mailto:hello@revopsunicorn.com" class="text-white/70 hover:text-gold transition-colors">hello@revopsunicorn.com</a></li>
+          <li><a href="https://revopsunicorn.com" class="text-white/70 hover:text-gold transition-colors">revopsunicorn.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-white/50 text-sm">© 2026 RevOps Unicorn. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="#" class="text-white/50 hover:text-white/70 text-sm">Privacy Policy</a>
+        <a href="#" class="text-white/50 hover:text-white/70 text-sm">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

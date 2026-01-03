@@ -1,0 +1,128 @@
+---
+import CheckIcon from './icons/CheckIcon.astro';
+import PhoneIcon from './icons/PhoneIcon.astro';
+
+// Service Tiers - RENAMED per Value-First plan
+const tiers = [
+  {
+    name: "Practice Clarity Assessment",
+    price: "$7,500",
+    description: "Understand where you are and map your path to exit-readiness",
+    ideal: "You're thinking about exit in 3-7 years and want clarity",
+    features: [
+      "Practice health analysis",
+      "Technology audit & recommendations",
+      "Client relationship assessment",
+      "Exit-readiness scorecard",
+      "Prioritized roadmap",
+      "Scenario planning"
+    ],
+    timeline: "2-3 weeks",
+    cta: "Learn More",
+    highlighted: false
+  },
+  {
+    name: "Transformation Partnership",
+    price: "$37,500",
+    description: "12-18 month hands-on transformation to exit-readiness",
+    ideal: "You're committed to preparing your practice for a successful exit",
+    features: [
+      "Everything in Clarity Assessment, plus:",
+      "Technology implementation",
+      "Workflow documentation",
+      "Team development program",
+      "Client service enhancement",
+      "Monthly partnership sessions"
+    ],
+    timeline: "12-18 months",
+    cta: "Schedule Consultation",
+    highlighted: true
+  },
+  {
+    name: "Transition Partnership",
+    price: "2% of value created",
+    description: "Full transformation through your successful exit",
+    ideal: "You've decided to exit and want comprehensive support",
+    features: [
+      "Complete practice transformation",
+      "Partner/buyer facilitation",
+      "Due diligence preparation",
+      "Client and team transition planning",
+      "Success-aligned partnership"
+    ],
+    timeline: "Through close",
+    cta: "Learn More",
+    highlighted: false
+  }
+];
+---
+
+<section id="services" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <span class="text-gold font-medium text-sm tracking-wider uppercase">Service Options</span>
+      <!-- Value-First updated headline -->
+      <h2 class="text-3xl md:text-4xl text-navy mt-4 mb-6 font-serif">
+        Choose Your Path to Exit Readiness
+      </h2>
+      <!-- Value-First updated intro -->
+      <p class="text-charcoal/80 text-lg leading-relaxed">
+        Whether you're curious about possibilities or ready for comprehensive
+        transformation, we offer approaches that respect your readiness and goals.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      {tiers.map((tier) => (
+        <div class={`relative rounded-lg p-8 transition-all ${tier.highlighted ? 'bg-navy text-white shadow-xl ring-4 ring-gold/30' : 'bg-cream border border-navy/10 hover:shadow-lg'}`}>
+          {tier.highlighted && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="px-4 py-1 bg-gold text-white text-sm font-medium rounded-full shadow">Most Popular</span>
+            </div>
+          )}
+          <div class="mb-6">
+            <h3 class={`text-2xl font-semibold mb-2 font-serif ${tier.highlighted ? 'text-white' : 'text-navy'}`}>{tier.name}</h3>
+            <p class={tier.highlighted ? 'text-white/70' : 'text-charcoal/70'}>{tier.description}</p>
+          </div>
+          <div class="mb-6">
+            <span class={`text-4xl font-bold font-serif ${tier.highlighted ? 'text-white' : 'text-navy'}`}>{tier.price}</span>
+            {tier.name !== "Transition Partnership" && <span class={tier.highlighted ? 'text-white/60 ml-2' : 'text-charcoal/60 ml-2'}>one-time</span>}
+          </div>
+          <div class={`rounded-lg p-4 mb-6 ${tier.highlighted ? 'bg-white/10' : 'bg-white border border-navy/10'}`}>
+            <div class="text-sm font-medium mb-1 text-gold">Ideal if:</div>
+            <div class={tier.highlighted ? 'text-white/90' : 'text-charcoal'}>{tier.ideal}</div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            {tier.features.map((feature) => (
+              <li class="flex items-start gap-3">
+                <CheckIcon class="text-gold" />
+                <span class={`text-sm ${tier.highlighted ? 'text-white/90' : 'text-charcoal/70'}`}>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <div class={`text-sm mb-6 ${tier.highlighted ? 'text-white/70' : 'text-charcoal/70'}`}>
+            <span class="font-medium">Timeline:</span> {tier.timeline}
+          </div>
+          <a href="#contact" class={`block text-center py-3 rounded font-medium transition-all ${tier.highlighted ? 'bg-gold hover:bg-gold/90 text-white' : 'border-2 border-navy hover:bg-navy hover:text-white text-navy'}`}>
+            {tier.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Value-First educational CTA -->
+    <div class="mt-16 text-center">
+      <p class="text-charcoal/70 max-w-2xl mx-auto mb-4">
+        Not sure which path is right for you? Start with a complimentary 30-minute
+        conversation. We'll listen to where you are and help you think through your options.
+      </p>
+      <p class="text-charcoal/60 text-sm mb-4">
+        Want to understand these options better? <a href="#" class="text-navy hover:text-gold underline">Get our comparison guide →</a>
+      </p>
+      <a href="tel:+1-555-738-6770" class="inline-flex items-center gap-2 text-navy hover:text-gold font-medium">
+        <PhoneIcon />
+        (555) 738-6770
+      </a>
+    </div>
+  </div>
+</section>

@@ -35,5 +35,98 @@ const {
   </head>
   <body class="min-h-screen bg-cream text-charcoal font-sans">
     <slot />
+
+    <!-- Calendly badge widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <!-- Visitor tracking & Slack notifications -->
+    <script define:vars={{ slackWebhook: import.meta.env.PUBLIC_SLACK_WEBHOOK || '' }}>
+      (function() {
+        const SLACK_WEBHOOK = slackWebhook;
+        const CALENDLY_URL = 'https://calendly.com/unified-support-solutions/revops-unicorn';
+
+        // Generate or retrieve visitor ID
+        function getVisitorId() {
+          let id = localStorage.getItem('rou_visitor_id');
+          if (!id) {
+            id = 'v_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('rou_visitor_id', id);
+          }
+          return id;
+        }
+
+        // Send event to Slack
+        function trackEvent(eventType, details = {}) {
+          const payload = {
+            blocks: [
+              {
+                type: "header",
+                text: { type: "plain_text", text: `🦄 ${eventType}`, emoji: true }
+              },
+              {
+                type: "section",
+                fields: [
+                  { type: "mrkdwn", text: `*Visitor:*\n${getVisitorId()}` },
+                  { type: "mrkdwn", text: `*Page:*\n${window.location.pathname}` },
+                  { type: "mrkdwn", text: `*Time:*\n${new Date().toLocaleString()}` },
+                  ...Object.entries(details).map(([k, v]) => ({ type: "mrkdwn", text: `*${k}:*\n${v}` }))
+                ]
+              }
+            ]
+          };
+
+          fetch(SLACK_WEBHOOK, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(payload)
+          }).catch(() => {});
+        }
+
+        // Track new visitors
+        if (!localStorage.getItem('rou_visited')) {
+          localStorage.setItem('rou_visited', 'true');
+          trackEvent('New Visitor', { Referrer: document.referrer || 'Direct' });
+        }
+
+        // Track Calendly clicks
+        document.addEventListener('click', (e) => {
+          const link = e.target.closest('a');
+          if (link) {
+            const href = link.getAttribute('href') || '';
+
+            // Calendly links
+            if (href.includes('calendly')) {
+              trackEvent('Calendly Click', { URL: href });
+            }
+
+            // Primary CTA clicks (gold buttons)
+            if (link.classList.contains('bg-gold')) {
+              trackEvent('CTA Click', { Text: link.textContent.trim(), URL: href });
+            }
+          }
+        });
+
+        // Track deep scroll (90%+)
+        let scrollTracked = false;
+        window.addEventListener('scroll', () => {
+          if (scrollTracked) return;
+          const scrollPercent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+          if (scrollPercent > 0.9) {
+            scrollTracked = true;
+            trackEvent('Deep Scroll', { Depth: '90%+' });
+          }
+        });
+
+        // Expose Calendly popup function globally
+        window.openCalendly = function() {
+          if (window.Calendly) {
+            Calendly.initPopupWidget({ url: CALENDLY_URL });
+            trackEvent('Calendly Popup Opened');
+          }
+          return false;
+        };
+      })();
+    </script>
   </body>
 </html>

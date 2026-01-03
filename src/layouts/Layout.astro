@@ -41,9 +41,9 @@ const {
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
     <!-- Visitor tracking & Slack notifications -->
-    <script define:vars={{ slackWebhook: import.meta.env.PUBLIC_SLACK_WEBHOOK || '' }}>
+    <script>
       (function() {
-        const SLACK_WEBHOOK = slackWebhook;
+        const SLACK_WEBHOOK = 'https://hooks.slack.com/services/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';
         const CALENDLY_URL = 'https://calendly.com/unified-support-solutions/revops-unicorn';
 
         // Generate or retrieve visitor ID

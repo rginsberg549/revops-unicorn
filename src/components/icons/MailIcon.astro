@@ -6,6 +6,13 @@ interface Props {
 const { class: className = "w-5 h-5" } = Astro.props;
 ---
 
-<svg class={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+<svg class={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Envelope body -->
+  <rect x="2" y="4" width="20" height="16" rx="2" fill="currentColor" opacity="0.15"/>
+  <rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <!-- Envelope flap with gold accent -->
+  <path d="M2 6l10 7 10-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Gold seal -->
+  <circle cx="12" cy="14" r="3" fill="#c9a227"/>
+  <path d="M10.5 14l1 1 2-2" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

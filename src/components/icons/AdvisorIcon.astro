@@ -1,0 +1,20 @@
+---
+// Exit Planning Advisors icon - clipboard/strategy
+interface Props {
+  class?: string;
+}
+const { class: className = "w-8 h-8" } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clipboard -->
+  <rect x="6" y="6" width="16" height="20" rx="2" fill="#c9a227" opacity="0.15"/>
+  <rect x="6" y="6" width="16" height="20" rx="2" fill="none" stroke="#c9a227" stroke-width="1.5"/>
+  <!-- Clip -->
+  <rect x="10" y="3" width="8" height="5" rx="1" fill="#c9a227"/>
+  <!-- Lines (strategy/plan) -->
+  <path d="M9 12h10M9 16h6M9 20h8" stroke="#c9a227" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Question mark showing gap -->
+  <circle cx="24" cy="20" r="5" fill="#c9a227" opacity="0.2"/>
+  <text x="22" y="23" font-size="8" fill="#c9a227" font-weight="bold">?</text>
+</svg>

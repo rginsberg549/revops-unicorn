@@ -3,34 +3,41 @@
 // Changed "What Buyers Want" to "What Creates Exit Value"
 // Reframed all value drivers from buyer-centric to stakeholder-centric
 
+import RecurringIcon from './icons/RecurringIcon.astro';
+import TeamIcon from './icons/TeamIcon.astro';
+import CloudIcon from './icons/CloudIcon.astro';
+import ChartIcon from './icons/ChartIcon.astro';
+import ProcessIcon from './icons/ProcessIcon.astro';
+import GrowthIcon from './icons/GrowthIcon.astro';
+
 const valueDrivers = [
   {
-    icon: "🔄",
+    icon: "recurring",
     title: "Recurring Revenue",
     description: "Ongoing advisory relationships that serve clients better AND create predictable value"
   },
   {
-    icon: "👥",
+    icon: "team",
     title: "Team Empowerment",
     description: "Systems and training so your team can serve clients excellently—giving you freedom now and transferability later"
   },
   {
-    icon: "☁️",
+    icon: "cloud",
     title: "Modern Technology",
     description: "Cloud tools that make work easier for your team, service better for clients, and integration simpler for acquirers"
   },
   {
-    icon: "📊",
+    icon: "chart",
     title: "Balanced Client Mix",
     description: "A healthy portfolio that reduces stress now and risk at exit"
   },
   {
-    icon: "📝",
+    icon: "process",
     title: "Clear Processes",
     description: "Documented workflows that ensure consistency, simplify training, and demonstrate transferability"
   },
   {
-    icon: "👨‍💼",
+    icon: "growth",
     title: "Team Development",
     description: "Invest in people who grow with you and can carry the practice forward"
   }
@@ -65,7 +72,14 @@ const valueDrivers = [
       <div class="grid sm:grid-cols-2 gap-4">
         {valueDrivers.map((driver) => (
           <div class="bg-white border border-navy/10 rounded-lg p-5 hover:shadow-md transition-all">
-            <div class="text-2xl mb-3">{driver.icon}</div>
+            <div class="mb-3">
+              {driver.icon === "recurring" && <RecurringIcon class="w-10 h-10" />}
+              {driver.icon === "team" && <TeamIcon class="w-10 h-10" />}
+              {driver.icon === "cloud" && <CloudIcon class="w-10 h-10" />}
+              {driver.icon === "chart" && <ChartIcon class="w-10 h-10" />}
+              {driver.icon === "process" && <ProcessIcon class="w-10 h-10" />}
+              {driver.icon === "growth" && <GrowthIcon class="w-10 h-10" />}
+            </div>
             <h3 class="text-navy font-semibold mb-2">{driver.title}</h3>
             <p class="text-charcoal/70 text-sm leading-relaxed">{driver.description}</p>
           </div>

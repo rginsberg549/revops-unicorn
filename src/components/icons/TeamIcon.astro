@@ -1,0 +1,23 @@
+---
+// Team Empowerment icon - people with connection
+interface Props {
+  class?: string;
+}
+const { class: className = "w-8 h-8" } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Central figure -->
+  <circle cx="16" cy="10" r="4" fill="#1a365d"/>
+  <path d="M10 24c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="#1a365d"/>
+  <!-- Left figure -->
+  <circle cx="7" cy="13" r="3" fill="#1a365d" opacity="0.6"/>
+  <path d="M3 23c0-2.2 1.8-4 4-4s4 1.8 4 4" fill="#1a365d" opacity="0.6"/>
+  <!-- Right figure -->
+  <circle cx="25" cy="13" r="3" fill="#1a365d" opacity="0.6"/>
+  <path d="M21 23c0-2.2 1.8-4 4-4s4 1.8 4 4" fill="#1a365d" opacity="0.6"/>
+  <!-- Gold connection lines -->
+  <path d="M11 12l3-1M21 12l-3-1" stroke="#c9a227" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Gold star badge -->
+  <circle cx="16" cy="10" r="1.5" fill="#c9a227"/>
+</svg>

@@ -1,0 +1,19 @@
+---
+// Business Brokers icon - handshake/transaction
+interface Props {
+  class?: string;
+}
+const { class: className = "w-8 h-8" } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Handshake -->
+  <path d="M6 16l4-4 5 3 4-4 7 7" stroke="#8b4c5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M8 20l3 3 6-6" stroke="#8b4c5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Dollar signs showing transaction focus -->
+  <text x="6" y="10" font-size="8" fill="#8b4c5a" font-weight="bold">$</text>
+  <text x="22" y="10" font-size="8" fill="#8b4c5a" font-weight="bold">$</text>
+  <!-- X mark showing limitation -->
+  <circle cx="24" cy="22" r="5" fill="#8b4c5a" opacity="0.2"/>
+  <path d="M22 20l4 4M26 20l-4 4" stroke="#8b4c5a" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

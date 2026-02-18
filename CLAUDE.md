@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-RevOpsUnicorn is a multi-page marketing website for a consulting firm specializing in AI-powered accounting practice exit preparation. The project targets accounting firm owners (55-68 years old) preparing for retirement and sale.
+RevOpsUnicorn is a multi-page marketing website for a consulting firm specializing in AI transformation for accounting practices. The project targets accounting firm owners (55-68 years old) looking to modernize their operations with AI.
 
 **Key files:**
 - `src/` - Astro website source code
@@ -125,7 +125,7 @@ All service data lives in `src/data/services.ts`. Service pages are generated fr
 ## Value-First Language
 
 This site follows Value-First language principles:
-- Uses "exit preparation" not "exit value optimization"
-- Frames benefits through stakeholders (clients, employees, owner) not just buyers
+- Positions as "AI transformation" — exit value is a proof point, not the headline promise
+- Frames benefits through operational improvement (efficiency, capacity, quality)
 - Offers multiple entry points based on visitor readiness (JourneySelector)
 - Includes educational CTAs for those not ready to call

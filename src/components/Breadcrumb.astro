@@ -1,0 +1,26 @@
+---
+interface Props {
+  current: string;
+  parent?: { label: string; href: string };
+}
+
+const { current, parent } = Astro.props;
+---
+
+<nav class="text-sm text-charcoal/60" aria-label="Breadcrumb">
+  <ol class="flex items-center gap-2">
+    <li>
+      <a href="/" class="hover:text-navy transition-colors">Home</a>
+    </li>
+    <li class="text-charcoal/40">/</li>
+    {parent && (
+      <>
+        <li>
+          <a href={parent.href} class="hover:text-navy transition-colors">{parent.label}</a>
+        </li>
+        <li class="text-charcoal/40">/</li>
+      </>
+    )}
+    <li class="text-navy font-medium">{current}</li>
+  </ol>
+</nav>

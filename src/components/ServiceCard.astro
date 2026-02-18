@@ -1,0 +1,64 @@
+---
+import type { Service } from '../data/services';
+import TaxIcon from './icons/TaxIcon.astro';
+import ProcessIcon from './icons/ProcessIcon.astro';
+import ChartIcon from './icons/ChartIcon.astro';
+import CloudIcon from './icons/CloudIcon.astro';
+import DocumentIcon from './icons/DocumentIcon.astro';
+import PortalIcon from './icons/PortalIcon.astro';
+import ShieldIcon from './icons/ShieldIcon.astro';
+import RecurringIcon from './icons/RecurringIcon.astro';
+import StarIcon from './icons/StarIcon.astro';
+import GrowthIcon from './icons/GrowthIcon.astro';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  tax: 'tax',
+  process: 'process',
+  chart: 'chart',
+  advisor: 'cloud',
+  document: 'document',
+  portal: 'portal',
+  shield: 'shield',
+  recurring: 'recurring',
+  star: 'star',
+  growth: 'growth',
+};
+
+const demandColors: Record<string, string> = {
+  'Very High': 'bg-gold/20 text-gold',
+  'High': 'bg-navy/10 text-navy',
+  'Medium-High': 'bg-navy/10 text-navy',
+  'Medium': 'bg-charcoal/10 text-charcoal',
+};
+---
+
+<a href={`/services/${service.slug}/`} class="group block bg-white border border-navy/10 rounded-lg p-6 hover:shadow-lg hover:border-gold/30 transition-all">
+  <div class="flex items-start justify-between mb-4">
+    <div class="w-12 h-12 bg-cream rounded-lg flex items-center justify-center">
+      {service.icon === 'tax' && <TaxIcon class="w-8 h-8" />}
+      {service.icon === 'process' && <ProcessIcon class="w-8 h-8" />}
+      {service.icon === 'chart' && <ChartIcon class="w-8 h-8" />}
+      {service.icon === 'advisor' && <CloudIcon class="w-8 h-8" />}
+      {service.icon === 'document' && <DocumentIcon class="w-8 h-8" />}
+      {service.icon === 'portal' && <PortalIcon class="w-8 h-8" />}
+      {service.icon === 'shield' && <ShieldIcon class="w-8 h-8" />}
+      {service.icon === 'recurring' && <RecurringIcon class="w-8 h-8" />}
+      {service.icon === 'star' && <StarIcon class="w-8 h-8" />}
+      {service.icon === 'growth' && <GrowthIcon class="w-8 h-8" />}
+    </div>
+    {service.demandLevel && (
+      <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${demandColors[service.demandLevel] || 'bg-charcoal/10 text-charcoal'}`}>
+        {service.demandLevel} Demand
+      </span>
+    )}
+  </div>
+  <h3 class="text-navy font-semibold mb-2 group-hover:text-gold transition-colors font-serif text-lg">{service.name}</h3>
+  <p class="text-charcoal/70 text-sm leading-relaxed mb-4">{service.shortDescription}</p>
+  <span class="text-gold text-sm font-medium group-hover:underline">Learn More &rarr;</span>
+</a>

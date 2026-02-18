@@ -1,6 +1,16 @@
 ---
 import UnicornHead from './icons/UnicornHead.astro';
 import PhoneIcon from './icons/PhoneIcon.astro';
+import { getAIServices, getEngagementServices } from '../data/services';
+
+const aiServices = getAIServices();
+const engagementModels = getEngagementServices();
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
@@ -15,11 +25,39 @@ import PhoneIcon from './icons/PhoneIcon.astro';
       </a>
 
       <div class="hidden md:flex items-center gap-8">
-        <a href="#problem" class="text-charcoal hover:text-navy transition-colors text-sm">The Gap</a>
-        <a href="#solution" class="text-charcoal hover:text-navy transition-colors text-sm">Our Approach</a>
-        <a href="#services" class="text-charcoal hover:text-navy transition-colors text-sm">Services</a>
-        <a href="#process" class="text-charcoal hover:text-navy transition-colors text-sm">Process</a>
-        <a href="#about" class="text-charcoal hover:text-navy transition-colors text-sm">About</a>
+        <a href="/#problem" class:list={["text-sm transition-colors", isActive('/#problem') ? 'text-navy font-medium' : 'text-charcoal hover:text-navy']}>The Gap</a>
+        <a href="/#solution" class:list={["text-sm transition-colors", isActive('/#solution') ? 'text-navy font-medium' : 'text-charcoal hover:text-navy']}>Our Approach</a>
+
+        <!-- Services Dropdown -->
+        <div class="relative group">
+          <a href="/services/" class:list={["text-sm transition-colors flex items-center gap-1", isActive('/services') ? 'text-navy font-medium' : 'text-charcoal hover:text-navy']}>
+            Services
+            <svg class="w-3 h-3 opacity-60" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="bg-white border border-navy/10 rounded-lg shadow-xl p-6 w-80">
+              <div class="mb-4">
+                <div class="text-xs font-medium text-gold uppercase tracking-wider mb-2">AI Services</div>
+                <div class="space-y-1">
+                  {aiServices.map((s) => (
+                    <a href={`/services/${s.slug}/`} class="block px-3 py-1.5 text-sm text-charcoal hover:text-navy hover:bg-cream rounded transition-colors">{s.name}</a>
+                  ))}
+                </div>
+              </div>
+              <div class="border-t border-navy/10 pt-4">
+                <div class="text-xs font-medium text-gold uppercase tracking-wider mb-2">Engagement Models</div>
+                <div class="space-y-1">
+                  {engagementModels.map((s) => (
+                    <a href={`/services/${s.slug}/`} class="block px-3 py-1.5 text-sm text-charcoal hover:text-navy hover:bg-cream rounded transition-colors">{s.name}</a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/#process" class:list={["text-sm transition-colors", isActive('/#process') ? 'text-navy font-medium' : 'text-charcoal hover:text-navy']}>Process</a>
+        <a href="/about/" class:list={["text-sm transition-colors", isActive('/about') ? 'text-navy font-medium' : 'text-charcoal hover:text-navy']}>About</a>
       </div>
 
       <div class="hidden md:flex items-center gap-4">
@@ -27,7 +65,7 @@ import PhoneIcon from './icons/PhoneIcon.astro';
           <PhoneIcon />
           (818) 645-5832
         </a>
-        <a href="https://calendly.com/unified-support-solutions/revops-unicorn" target="_blank" class="px-5 py-2.5 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all text-sm shadow-sm">
+        <a href="/contact/" class="px-5 py-2.5 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all text-sm shadow-sm">
           Schedule Consultation
         </a>
       </div>
@@ -40,14 +78,32 @@ import PhoneIcon from './icons/PhoneIcon.astro';
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-navy/10 px-6 py-4">
-    <div class="flex flex-col gap-4">
-      <a href="#problem" class="text-charcoal py-2">The Gap</a>
-      <a href="#solution" class="text-charcoal py-2">Our Approach</a>
-      <a href="#services" class="text-charcoal py-2">Services</a>
-      <a href="#process" class="text-charcoal py-2">Process</a>
-      <a href="#about" class="text-charcoal py-2">About</a>
-      <a href="https://calendly.com/unified-support-solutions/revops-unicorn" target="_blank" class="px-5 py-3 bg-gold text-white font-medium rounded text-center mt-2">
+  <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-navy/10 px-6 py-4 max-h-[80vh] overflow-y-auto">
+    <div class="flex flex-col gap-2">
+      <a href="/#problem" class="text-charcoal py-2">The Gap</a>
+      <a href="/#solution" class="text-charcoal py-2">Our Approach</a>
+
+      <!-- Mobile Services Accordion -->
+      <button id="mobile-services-toggle" class="text-charcoal py-2 text-left flex items-center justify-between w-full">
+        <span>Services</span>
+        <svg id="mobile-services-chevron" class="w-4 h-4 transition-transform" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div id="mobile-services-panel" class="hidden pl-4 space-y-1 pb-2">
+        <a href="/services/" class="block py-1.5 text-gold text-sm font-medium">All Services</a>
+        <div class="text-xs font-medium text-charcoal/50 uppercase tracking-wider pt-2 pb-1">AI Services</div>
+        {aiServices.map((s) => (
+          <a href={`/services/${s.slug}/`} class="block py-1.5 text-charcoal/80 text-sm">{s.name}</a>
+        ))}
+        <div class="text-xs font-medium text-charcoal/50 uppercase tracking-wider pt-2 pb-1">Engagement Models</div>
+        {engagementModels.map((s) => (
+          <a href={`/services/${s.slug}/`} class="block py-1.5 text-charcoal/80 text-sm">{s.name}</a>
+        ))}
+      </div>
+
+      <a href="/#process" class="text-charcoal py-2">Process</a>
+      <a href="/about/" class="text-charcoal py-2">About</a>
+      <a href="/contact/" class="text-charcoal py-2">Contact</a>
+      <a href="/contact/" class="px-5 py-3 bg-gold text-white font-medium rounded text-center mt-2">
         Schedule Consultation
       </a>
     </div>
@@ -63,7 +119,17 @@ import PhoneIcon from './icons/PhoneIcon.astro';
     mobileMenu?.classList.toggle('hidden');
   });
 
-  // Close menu when clicking a link
+  // Mobile services accordion
+  const servicesToggle = document.getElementById('mobile-services-toggle');
+  const servicesPanel = document.getElementById('mobile-services-panel');
+  const servicesChevron = document.getElementById('mobile-services-chevron');
+
+  servicesToggle?.addEventListener('click', () => {
+    servicesPanel?.classList.toggle('hidden');
+    servicesChevron?.classList.toggle('rotate-180');
+  });
+
+  // Close menu when clicking a link (but not the accordion toggle)
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu?.classList.add('hidden');

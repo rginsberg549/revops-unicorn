@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { getAIServices, getEngagementServices } from '../../data/services';
+
+const aiServices = getAIServices();
+const engagementModels = getEngagementServices();
+---
+
+<Layout
+  title="Services | RevOps Unicorn"
+  description="8 AI-powered services and 3 engagement models to maximize your accounting practice's exit value. From tax automation to full transition support."
+>
+  <Navigation />
+
+  <!-- Hero -->
+  <section class="pt-28 pb-16 bg-navy">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="mb-6">
+        <nav class="text-sm text-white/50" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2">
+            <li><a href="/" class="hover:text-white/70 transition-colors">Home</a></li>
+            <li class="text-white/30">/</li>
+            <li class="text-white font-medium">Services</li>
+          </ol>
+        </nav>
+      </div>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl text-white font-serif mb-4">
+        AI-Powered Services for <span class="text-gold">Exit-Ready</span> Practices
+      </h1>
+      <p class="text-xl text-white/80 leading-relaxed max-w-3xl">
+        Based on analysis of 44 accounting firms seeking buyers, we've built capabilities
+        around the areas that matter most for valuation and transferability.
+      </p>
+    </div>
+  </section>
+
+  <!-- How It Works Explainer -->
+  <section class="py-12 bg-cream border-b border-navy/10">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <p class="text-charcoal/80 text-lg leading-relaxed">
+        <strong class="text-navy">AI services</strong> are the capabilities—what gets delivered.
+        <strong class="text-navy">Engagement models</strong> are the depth of partnership—how we work together.
+        A Practice Clarity Assessment identifies which services you need. A Transformation Partnership implements them.
+      </p>
+    </div>
+  </section>
+
+  <!-- AI Services Grid -->
+  <section class="py-20 lg:py-24 bg-cream">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="mb-12">
+        <span class="text-gold font-medium text-sm tracking-wider uppercase">AI Capabilities</span>
+        <h2 class="text-2xl md:text-3xl text-navy mt-3 font-serif">8 AI Service Areas</h2>
+        <p class="text-charcoal/70 mt-2">Each service can be implemented standalone or as part of a comprehensive engagement.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {aiServices.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement Models -->
+  <section class="py-20 lg:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="mb-12">
+        <span class="text-gold font-medium text-sm tracking-wider uppercase">Engagement Models</span>
+        <h2 class="text-2xl md:text-3xl text-navy mt-3 font-serif">3 Ways to Partner With Us</h2>
+        <p class="text-charcoal/70 mt-2">Choose the depth of engagement that matches your readiness and goals.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        {engagementModels.map((tier, index) => (
+          <a href={`/services/${tier.slug}/`} class={`block relative rounded-lg p-8 transition-all hover:shadow-xl ${index === 1 ? 'bg-navy text-white ring-4 ring-gold/30' : 'bg-cream border border-navy/10 hover:border-gold/30'}`}>
+            {index === 1 && (
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span class="px-4 py-1 bg-gold text-white text-sm font-medium rounded-full shadow">Most Popular</span>
+              </div>
+            )}
+            <h3 class={`text-2xl font-semibold mb-2 font-serif ${index === 1 ? 'text-white' : 'text-navy'}`}>{tier.name}</h3>
+            <div class={`text-3xl font-bold font-serif mb-4 ${index === 1 ? 'text-white' : 'text-navy'}`}>{tier.pricing.label}</div>
+            <p class={`leading-relaxed mb-6 ${index === 1 ? 'text-white/70' : 'text-charcoal/70'}`}>{tier.shortDescription}</p>
+
+            <div class={`text-sm mb-1 font-medium ${index === 1 ? 'text-gold' : 'text-gold'}`}>Timeline:</div>
+            <div class={`text-sm mb-6 ${index === 1 ? 'text-white/70' : 'text-charcoal/70'}`}>{tier.timeline}</div>
+
+            <span class={`text-sm font-medium ${index === 1 ? 'text-gold' : 'text-gold'}`}>View Full Details &rarr;</span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="mt-16 text-center">
+        <p class="text-charcoal/70 max-w-2xl mx-auto mb-6">
+          Not sure which path is right for you? Start with a complimentary 30-minute
+          conversation. We'll listen to where you are and help you think through your options.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact/" class="px-8 py-4 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all text-center shadow-md">
+            Schedule Consultation
+          </a>
+          <a href="tel:+1-818-645-5832" class="px-8 py-4 border-2 border-navy hover:bg-navy hover:text-white text-navy font-medium rounded transition-all text-center">
+            (818) 645-5832
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

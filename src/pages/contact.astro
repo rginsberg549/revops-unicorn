@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import UnicornHead from '../components/icons/UnicornHead.astro';
+import PhoneIcon from '../components/icons/PhoneIcon.astro';
+import MailIcon from '../components/icons/MailIcon.astro';
+
+const faqs = [
+  {
+    q: "What happens on the first call?",
+    a: "We listen. You'll tell us about your practice, where you are on your exit journey, and what concerns you most. We'll share relevant insights from our experience and help you think through next steps—no sales pitch, no pressure.",
+  },
+  {
+    q: "How long before we see results?",
+    a: "Our Practice Clarity Assessment delivers a complete scorecard and roadmap in 2-3 weeks. For Transformation Partnerships, most firms see measurable improvements within the first 90 days of implementation.",
+  },
+  {
+    q: "Do you work with firms outside the US?",
+    a: "Currently our primary focus is US-based accounting practices. We're expanding into the UK and Canada—contact us to discuss international engagements.",
+  },
+  {
+    q: "What if we're not ready to exit yet?",
+    a: "Most of our clients are 3-7 years from exit. The services we implement make your practice better to run right now—more efficient, less dependent on you, more profitable. Exit readiness is a byproduct of operational excellence.",
+  },
+];
+---
+
+<Layout
+  title="Contact | RevOps Unicorn"
+  description="Schedule a complimentary 30-minute conversation about your accounting practice's exit preparation. No pressure, no obligation."
+>
+  <Navigation />
+
+  <!-- Hero -->
+  <section class="pt-28 pb-16 bg-navy">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <UnicornHead class="w-20 h-20 mx-auto mb-6" />
+      <h1 class="text-3xl md:text-4xl lg:text-5xl text-white font-serif mb-4">
+        Let's Talk About <span class="text-gold">Your Practice</span>
+      </h1>
+      <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+        Schedule a complimentary 30-minute conversation. We'll listen to where you are
+        and help you think through your options—whether that involves us or not.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calendly + Contact Info -->
+  <section class="py-20 lg:py-24 bg-cream">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Calendly Embed -->
+        <div class="lg:col-span-2">
+          <div class="bg-white border border-navy/10 rounded-lg overflow-hidden shadow-sm" style="min-height: 650px;">
+            <div class="calendly-inline-widget" data-url="https://calendly.com/unified-support-solutions/revops-unicorn?hide_gdpr_banner=1" style="min-width:320px;height:650px;"></div>
+          </div>
+        </div>
+
+        <!-- Contact Sidebar -->
+        <div class="space-y-8">
+          <!-- Direct Contact -->
+          <div class="bg-white border border-navy/10 rounded-lg p-8">
+            <h3 class="text-xl font-semibold text-navy mb-6 font-serif">Prefer to Reach Out Directly?</h3>
+            <div class="space-y-4">
+              <a href="tel:+1-818-645-5832" class="flex items-center gap-3 text-charcoal hover:text-navy transition-colors">
+                <div class="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <PhoneIcon class="text-gold" />
+                </div>
+                <div>
+                  <div class="font-medium">(818) 645-5832</div>
+                  <div class="text-charcoal/60 text-sm">Mon-Fri, 9am-5pm PT</div>
+                </div>
+              </a>
+              <a href="mailto:hello@revopsunicorn.com" class="flex items-center gap-3 text-charcoal hover:text-navy transition-colors">
+                <div class="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MailIcon class="text-gold" />
+                </div>
+                <div>
+                  <div class="font-medium">hello@revopsunicorn.com</div>
+                  <div class="text-charcoal/60 text-sm">We respond within 24 hours</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- What to Expect -->
+          <div class="bg-white border border-navy/10 rounded-lg p-8">
+            <h3 class="text-xl font-semibold text-navy mb-4 font-serif">What to Expect</h3>
+            <ol class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center text-gold font-semibold text-xs">1</span>
+                <span class="text-charcoal/80 text-sm">We'll listen to your situation and goals</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center text-gold font-semibold text-xs">2</span>
+                <span class="text-charcoal/80 text-sm">Share relevant insights from our experience</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center text-gold font-semibold text-xs">3</span>
+                <span class="text-charcoal/80 text-sm">Help you think through your options</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center text-gold font-semibold text-xs">4</span>
+                <span class="text-charcoal/80 text-sm">No pressure—take what's useful, leave the rest</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 lg:py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl text-navy font-serif">Common Questions</h2>
+      </div>
+      <div class="space-y-6">
+        {faqs.map((faq) => (
+          <div class="border border-navy/10 rounded-lg p-6">
+            <h3 class="text-navy font-semibold mb-2">{faq.q}</h3>
+            <p class="text-charcoal/70 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

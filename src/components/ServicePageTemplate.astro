@@ -1,0 +1,193 @@
+---
+import type { Service } from '../data/services';
+import { getAIServices, getEngagementServices } from '../data/services';
+import Breadcrumb from './Breadcrumb.astro';
+import CheckIcon from './icons/CheckIcon.astro';
+import PhoneIcon from './icons/PhoneIcon.astro';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const isAIService = service.category === 'ai-service';
+const engagementTiers = getEngagementServices();
+
+// For AI services, show which engagement tiers include them
+const includedTiers = isAIService
+  ? engagementTiers.filter(t => service.includedIn?.includes(t.slug))
+  : [];
+
+// For engagement tiers, show which AI services are included
+const aiServices = getAIServices();
+---
+
+<article>
+  <!-- Breadcrumb + Hero Band -->
+  <section class="pt-28 pb-16 bg-navy">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="mb-6">
+        <nav class="text-sm text-white/50" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2">
+            <li><a href="/" class="hover:text-white/70 transition-colors">Home</a></li>
+            <li class="text-white/30">/</li>
+            <li><a href="/services/" class="hover:text-white/70 transition-colors">Services</a></li>
+            <li class="text-white/30">/</li>
+            <li class="text-white font-medium">{service.name}</li>
+          </ol>
+        </nav>
+      </div>
+      {service.demandLevel && (
+        <span class="inline-block text-xs font-medium px-3 py-1 rounded-full bg-gold/20 text-gold mb-4">
+          {service.demandLevel} Demand — {service.demandCount}
+        </span>
+      )}
+      <h1 class="text-3xl md:text-4xl lg:text-5xl text-white font-serif mb-4">
+        {service.name}
+      </h1>
+      <p class="text-xl text-white/80 leading-relaxed max-w-3xl">
+        {service.tagline}
+      </p>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="py-16 lg:py-20 bg-cream">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <span class="text-burgundy font-medium text-sm tracking-wider uppercase">The Challenge</span>
+      <h2 class="text-2xl md:text-3xl text-navy mt-3 mb-6 font-serif">Why This Matters</h2>
+      <p class="text-charcoal/80 text-lg leading-relaxed">{service.problem}</p>
+    </div>
+  </section>
+
+  <!-- Our Solution -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <span class="text-gold font-medium text-sm tracking-wider uppercase">Our Approach</span>
+      <h2 class="text-2xl md:text-3xl text-navy mt-3 mb-6 font-serif">How We Solve This</h2>
+      <p class="text-charcoal/80 text-lg leading-relaxed">{service.solution}</p>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="py-16 lg:py-20 bg-cream">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <span class="text-gold font-medium text-sm tracking-wider uppercase">What You Get</span>
+      <h2 class="text-2xl md:text-3xl text-navy mt-3 mb-8 font-serif">Deliverables</h2>
+      <ol class="space-y-4">
+        {service.deliverables.map((item, i) => (
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-8 h-8 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center text-gold font-semibold text-sm">
+              {i + 1}
+            </span>
+            <span class="text-charcoal/80 text-lg pt-1">{item}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Timeline + Valuation Impact -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Timeline -->
+        <div class="bg-cream border border-navy/10 rounded-lg p-8">
+          <span class="text-gold font-medium text-sm tracking-wider uppercase">Timeline</span>
+          <div class="text-3xl font-bold text-navy font-serif mt-3 mb-3">{service.timeline}</div>
+          <p class="text-charcoal/70 text-sm">From kickoff to operational deployment</p>
+        </div>
+
+        <!-- Pricing -->
+        <div class="bg-cream border border-navy/10 rounded-lg p-8">
+          <span class="text-gold font-medium text-sm tracking-wider uppercase">
+            {isAIService ? 'Investment' : 'Partnership Fee'}
+          </span>
+          <div class="text-3xl font-bold text-navy font-serif mt-3 mb-3">{service.pricing.label}</div>
+          {service.pricing.setup && (
+            <p class="text-charcoal/70 text-sm">{service.pricing.setup} setup</p>
+          )}
+          {service.pricing.ongoing && (
+            <p class="text-charcoal/70 text-sm">{service.pricing.ongoing}</p>
+          )}
+        </div>
+      </div>
+
+      <!-- Valuation Impact callout -->
+      <div class="mt-8 bg-navy rounded-lg p-8">
+        <span class="text-gold font-medium text-sm tracking-wider uppercase">Impact on Exit Value</span>
+        <p class="text-white/90 text-lg leading-relaxed mt-3">{service.valuationImpact}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Included In / AI Services Included -->
+  {isAIService && includedTiers.length > 0 && (
+    <section class="py-16 lg:py-20 bg-cream">
+      <div class="max-w-4xl mx-auto px-6 lg:px-8">
+        <span class="text-gold font-medium text-sm tracking-wider uppercase">Engagement Options</span>
+        <h2 class="text-2xl md:text-3xl text-navy mt-3 mb-4 font-serif">This Service Is Included In</h2>
+        <p class="text-charcoal/70 mb-8">
+          This AI service can be implemented as a standalone project, or as part of a comprehensive engagement:
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          {includedTiers.map((tier) => (
+            <a href={`/services/${tier.slug}/`} class="block bg-white border border-navy/10 rounded-lg p-6 hover:shadow-lg hover:border-gold/30 transition-all">
+              <h3 class="text-navy font-semibold font-serif text-lg mb-2">{tier.name}</h3>
+              <p class="text-charcoal/70 text-sm mb-3">{tier.shortDescription}</p>
+              <span class="text-gold text-sm font-medium">{tier.pricing.label} &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {!isAIService && (
+    <section class="py-16 lg:py-20 bg-cream">
+      <div class="max-w-4xl mx-auto px-6 lg:px-8">
+        <span class="text-gold font-medium text-sm tracking-wider uppercase">AI Capabilities</span>
+        <h2 class="text-2xl md:text-3xl text-navy mt-3 mb-4 font-serif">Services Delivered Through This Partnership</h2>
+        <p class="text-charcoal/70 mb-8">
+          {service.slug === 'practice-clarity'
+            ? 'Your Clarity Assessment identifies which of these 8 AI services will deliver the greatest impact for your practice:'
+            : 'We select and implement the AI services your practice needs most from our full capability set:'}
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {aiServices.map((ai) => (
+            <a href={`/services/${ai.slug}/`} class="flex items-start gap-3 bg-white border border-navy/10 rounded-lg p-4 hover:shadow-md hover:border-gold/30 transition-all">
+              <CheckIcon class="text-gold mt-0.5" />
+              <div>
+                <div class="text-navy font-semibold text-sm">{ai.name}</div>
+                <div class="text-charcoal/60 text-xs">{ai.demandLevel} Demand</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-16 lg:py-20 bg-navy">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl text-white mb-4 font-serif">
+        Ready to Get Started?
+      </h2>
+      <p class="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
+        Schedule a complimentary 30-minute conversation. We'll listen to where you are and help you think through your options.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact/" class="px-8 py-4 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all inline-flex items-center justify-center gap-2 shadow-md">
+          Schedule Consultation
+        </a>
+        <a href="tel:+1-818-645-5832" class="px-8 py-4 border-2 border-white/30 hover:bg-white/10 text-white font-medium rounded transition-all inline-flex items-center justify-center gap-2">
+          <PhoneIcon />
+          (818) 645-5832
+        </a>
+      </div>
+      <p class="text-white/50 text-sm mt-6">No pressure. No obligation. Just honest conversation about your practice.</p>
+    </div>
+  </section>
+</article>

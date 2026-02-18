@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<svg class:list={["w-8 h-8 flex-shrink-0", className]} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Upload tray -->
+  <rect x="4" y="14" width="24" height="14" rx="3" stroke="#1a365d" stroke-width="1.5" fill="none"/>
+  <!-- Folder flap -->
+  <path d="M7 14V9a2 2 0 012-2h5l2 3h7a2 2 0 012 2v2" stroke="#1a365d" stroke-width="1.5" fill="none"/>
+  <!-- Gold upload arrow -->
+  <path d="M16 24V17" stroke="#c9a227" stroke-width="2" stroke-linecap="round"/>
+  <path d="M12.5 20L16 16.5L19.5 20" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Gold checkmark badge -->
+  <circle cx="24" cy="8" r="4" fill="#c9a227" opacity="0.2"/>
+  <circle cx="24" cy="8" r="4" stroke="#c9a227" stroke-width="1.5" fill="none"/>
+  <path d="M22 8l1.5 1.5L26 6.5" stroke="#c9a227" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import ServicePageTemplate from '../../components/ServicePageTemplate.astro';
+import Footer from '../../components/Footer.astro';
+import { services, getServiceBySlug } from '../../data/services';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+  }));
+};
+
+const { slug } = Astro.params;
+const service = getServiceBySlug(slug as string)!;
+---
+
+<Layout title={service.seo.title} description={service.seo.description}>
+  <Navigation />
+  <ServicePageTemplate service={service} />
+  <Footer />
+</Layout>

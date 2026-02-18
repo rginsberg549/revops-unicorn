@@ -1,0 +1,27 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<svg class:list={["w-8 h-8 flex-shrink-0", className]} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Document base -->
+  <rect x="6" y="3" width="16" height="22" rx="2" stroke="#1a365d" stroke-width="1.5" fill="none"/>
+  <!-- Document lines -->
+  <line x1="10" y1="9" x2="18" y2="9" stroke="#1a365d" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="10" y1="13" x2="18" y2="13" stroke="#1a365d" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="10" y1="17" x2="15" y2="17" stroke="#1a365d" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Gold calculator overlay -->
+  <rect x="16" y="15" width="12" height="14" rx="2" fill="#c9a227" opacity="0.15" stroke="#c9a227" stroke-width="1.5"/>
+  <!-- Calculator display -->
+  <rect x="18" y="17" width="8" height="3" rx="1" fill="#c9a227" opacity="0.3"/>
+  <!-- Calculator buttons -->
+  <circle cx="19.5" cy="23" r="1" fill="#c9a227"/>
+  <circle cx="22" cy="23" r="1" fill="#c9a227"/>
+  <circle cx="24.5" cy="23" r="1" fill="#c9a227"/>
+  <circle cx="19.5" cy="26" r="1" fill="#c9a227"/>
+  <circle cx="22" cy="26" r="1" fill="#c9a227"/>
+  <circle cx="24.5" cy="26" r="1" fill="#c9a227"/>
+</svg>

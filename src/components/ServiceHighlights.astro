@@ -1,0 +1,75 @@
+---
+import { getAIServices, getEngagementServices } from '../data/services';
+import ServiceCard from './ServiceCard.astro';
+import CheckIcon from './icons/CheckIcon.astro';
+import ArrowRightIcon from './icons/ArrowRightIcon.astro';
+
+// Top 4 highest-demand AI services for homepage
+const topServices = getAIServices().slice(0, 4);
+const tiers = getEngagementServices();
+---
+
+<section id="services" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <span class="text-gold font-medium text-sm tracking-wider uppercase">AI-Powered Services</span>
+      <h2 class="text-3xl md:text-4xl text-navy mt-4 mb-6 font-serif">
+        8 Services That <span class="text-gold">Maximize Exit Value</span>
+      </h2>
+      <p class="text-charcoal/80 text-lg leading-relaxed">
+        Based on analysis of 44 accounting firms seeking buyers, we've built AI service
+        capabilities around the areas that matter most for valuation and transferability.
+      </p>
+    </div>
+
+    <!-- Top 4 AI Service Cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      {topServices.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+
+    <div class="text-center mb-20">
+      <a href="/services/" class="inline-flex items-center gap-2 text-gold hover:text-gold/80 font-medium transition-colors">
+        See all 8 AI services
+        <ArrowRightIcon class="w-4 h-4" />
+      </a>
+    </div>
+
+    <!-- Engagement Models -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <span class="text-gold font-medium text-sm tracking-wider uppercase">Engagement Models</span>
+      <h3 class="text-2xl md:text-3xl text-navy mt-4 mb-4 font-serif">
+        Choose Your Path to Exit Readiness
+      </h3>
+      <p class="text-charcoal/70">
+        AI services are the capabilities. Engagement models are how deeply we partner with you to implement them.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      {tiers.map((tier, index) => (
+        <a href={`/services/${tier.slug}/`} class={`block rounded-lg p-8 transition-all hover:shadow-lg ${index === 1 ? 'bg-navy text-white ring-4 ring-gold/30 relative' : 'bg-cream border border-navy/10 hover:border-gold/30'}`}>
+          {index === 1 && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="px-4 py-1 bg-gold text-white text-sm font-medium rounded-full shadow">Most Popular</span>
+            </div>
+          )}
+          <h4 class={`text-xl font-semibold mb-2 font-serif ${index === 1 ? 'text-white' : 'text-navy'}`}>{tier.name}</h4>
+          <div class={`text-3xl font-bold font-serif mb-3 ${index === 1 ? 'text-white' : 'text-navy'}`}>{tier.pricing.label}</div>
+          <p class={`text-sm leading-relaxed mb-4 ${index === 1 ? 'text-white/70' : 'text-charcoal/70'}`}>{tier.shortDescription}</p>
+          <span class={`text-sm font-medium ${index === 1 ? 'text-gold' : 'text-gold'}`}>Learn More &rarr;</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-charcoal/70 max-w-2xl mx-auto mb-4">
+        Not sure which path is right? Start with a complimentary 30-minute conversation.
+      </p>
+      <a href="/contact/" class="inline-flex items-center gap-2 text-navy hover:text-gold font-medium transition-colors">
+        Talk to us &rarr;
+      </a>
+    </div>
+  </div>
+</section>

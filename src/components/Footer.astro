@@ -1,11 +1,17 @@
 ---
 import UnicornHead from './icons/UnicornHead.astro';
 
-// Service names - Value-First updated
 const services = [
-  { name: "Practice Clarity Assessment", href: "#services" },
-  { name: "Transformation Partnership", href: "#services" },
-  { name: "Transition Partnership", href: "#services" }
+  { name: "AI Tax Preparation", href: "/services/ai-tax-preparation/" },
+  { name: "AI Practice Management", href: "/services/ai-practice-management/" },
+  { name: "AI Bookkeeping", href: "/services/ai-bookkeeping/" },
+  { name: "AI CFO Advisory", href: "/services/ai-cfo-advisory/" },
+  { name: "View All Services", href: "/services/" },
+];
+
+const pages = [
+  { name: "About", href: "/about/" },
+  { name: "Contact", href: "/contact/" },
 ];
 ---
 
@@ -20,9 +26,8 @@ const services = [
             <span class="text-xl font-semibold text-gold font-serif"> Unicorn</span>
           </div>
         </a>
-        <!-- Value-First updated tagline -->
         <p class="text-white/70 max-w-md leading-relaxed">
-          Exit preparation for accounting firm owners. We help you build a practice
+          AI-powered exit preparation for accounting firm owners. We help you build a practice
           worth acquiring—and worth running until you're ready.
         </p>
       </div>
@@ -32,6 +37,14 @@ const services = [
           {services.map((service) => (
             <li>
               <a href={service.href} class="text-white/70 hover:text-gold transition-colors">{service.name}</a>
+            </li>
+          ))}
+        </ul>
+        <h4 class="text-white font-semibold mt-6 mb-4">Pages</h4>
+        <ul class="space-y-2">
+          {pages.map((page) => (
+            <li>
+              <a href={page.href} class="text-white/70 hover:text-gold transition-colors">{page.name}</a>
             </li>
           ))}
         </ul>
@@ -46,7 +59,7 @@ const services = [
       </div>
     </div>
     <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-      <div class="text-white/50 text-sm">© 2026 RevOps Unicorn. All rights reserved.</div>
+      <div class="text-white/50 text-sm">&copy; 2026 RevOps Unicorn. All rights reserved.</div>
       <div class="flex gap-6">
         <a href="#" class="text-white/50 hover:text-white/70 text-sm">Privacy Policy</a>
         <a href="#" class="text-white/50 hover:text-white/70 text-sm">Terms of Service</a>

@@ -2,6 +2,16 @@
 import UnicornHead from './icons/UnicornHead.astro';
 import MailIcon from './icons/MailIcon.astro';
 import PhoneIcon from './icons/PhoneIcon.astro';
+
+interface Props {
+  headline?: string;
+  body?: string;
+}
+
+const {
+  headline = "Ready to Protect What You've Built?",
+  body = "Schedule a complimentary 30-minute conversation. We'll listen to where you are, explore what's possible, and help you think through your options—whether that involves us or not."
+} = Astro.props;
 ---
 
 <section id="contact" class="py-20 lg:py-28 bg-cream">
@@ -9,16 +19,13 @@ import PhoneIcon from './icons/PhoneIcon.astro';
     <div class="bg-white border border-navy/10 rounded-lg p-8 md:p-12 text-center shadow-lg">
       <UnicornHead class="w-20 h-20 mx-auto mb-6" />
       <h2 class="text-3xl md:text-4xl text-navy mb-4 font-serif">
-        Ready to Protect What You've Built?
+        {headline}
       </h2>
-      <!-- Value-First updated body -->
       <p class="text-charcoal/80 text-lg mb-8 max-w-2xl mx-auto">
-        Schedule a complimentary 30-minute conversation. We'll listen to where you are,
-        explore what's possible, and help you think through your options—whether
-        that involves us or not.
+        {body}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-        <a href="https://calendly.com/unified-support-solutions/revops-unicorn" target="_blank" class="px-8 py-4 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all inline-flex items-center justify-center gap-2 shadow-md">
+        <a href="/contact/" class="px-8 py-4 bg-gold hover:bg-gold/90 text-white font-medium rounded transition-all inline-flex items-center justify-center gap-2 shadow-md">
           Schedule Consultation
         </a>
         <a href="tel:+1-818-645-5832" class="px-8 py-4 border-2 border-navy hover:bg-navy hover:text-white text-navy font-medium rounded transition-all inline-flex items-center justify-center gap-2">
@@ -26,10 +33,6 @@ import PhoneIcon from './icons/PhoneIcon.astro';
           (818) 645-5832
         </a>
       </div>
-      <!-- Value-First educational CTA -->
-      <p class="text-charcoal/60 text-sm mb-4">
-        Prefer to learn first? <a href="#" class="text-navy hover:text-gold underline">Subscribe to monthly insights →</a>
-      </p>
       <p class="text-charcoal/60 text-sm">No pressure. No obligation. Just honest conversation about your practice and your future.</p>
     </div>
   </div>
